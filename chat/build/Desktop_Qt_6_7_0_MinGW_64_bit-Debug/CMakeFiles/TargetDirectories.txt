@@ -1,0 +1,9 @@
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/chat.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/chat_autogen_timestamp_deps.dir
+C:/Users/lukas/Desktop/pppp/chat/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/chat_autogen.dir
