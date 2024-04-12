@@ -1,5 +1,7 @@
 #include "ClientManager.h"
 
+//jak chcesz przez siec to odkomentuj i zakomentuj ta nizej
+//ClientManager::ClientManager(const QHostAddress &ip, ushort port, QObject *parent) : QObject{parent}, _ip(ip), _port(port)
 ClientManager::ClientManager(QHostAddress ip, ushort port, QObject *parent) : QObject{parent}, _ip(ip), _port(port)
 {
     _socket = new QTcpSocket(this);
