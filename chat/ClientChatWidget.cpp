@@ -22,7 +22,8 @@ void ClientChatWidget::dataReceived(){
 
 void ClientChatWidget::on_btnSend_clicked()
 {
-    _client->write(ui->lnMessage->text().trimmed().toUtf8());
+    _client->write("From server: " + ui->lnMessage->text().trimmed().toUtf8());
+    ui->listMessages->addItem("You: " + ui->lnMessage->text().trimmed().toUtf8());
     ui->lnMessage->setText("");
 }
 
