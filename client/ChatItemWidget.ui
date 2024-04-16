@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>368</width>
-    <height>121</height>
+    <width>426</width>
+    <height>394</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,16 +15,16 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="lblMessage">
+    <widget class="QLabel" name="lblTime">
      <property name="text">
-      <string>Message</string>
+      <string>Time</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="lblTime">
+    <widget class="QLabel" name="lblMessage">
      <property name="text">
-      <string>Time</string>
+      <string>Message</string>
      </property>
     </widget>
    </item>

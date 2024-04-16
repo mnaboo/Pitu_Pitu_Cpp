@@ -27,6 +27,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         ServerManager.h ServerManager.cpp
         ClientChatWidget.h ClientChatWidget.cpp ClientChatWidget.ui
+        ChatProtocol.cpp ChatProtocol.h ClientManager.cpp ClientManager.h
+        icons.qrc
 
     )
 # Define target properties for Android with Qt 6 as:
