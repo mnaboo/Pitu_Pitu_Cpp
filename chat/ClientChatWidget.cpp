@@ -24,7 +24,10 @@ ClientChatWidget::~ClientChatWidget()
 
 void ClientChatWidget::on_btnSend_clicked()
 {
-    _client->sendMessage(ui->lnMessage->text().trimmed());
+
+    _client->sendMessage("From server: " + ui->lnMessage->text().trimmed());
+    ui->listMessages->addItem("You: " + ui->lnMessage->text().trimmed().toUtf8());
+
     ui->lnMessage->setText("");
     ui->listMessages->addItem(ui->lnMessage->text().trimmed());
 }
