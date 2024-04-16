@@ -26,10 +26,10 @@ void ClientChatWidget::on_btnSend_clicked()
 {
 
     _client->sendMessage("From server: " + ui->lnMessage->text().trimmed());
-    ui->listMessages->addItem("You: " + ui->lnMessage->text().trimmed().toUtf8());
+    ui->listMessages->addItem("You: " + ui->lnMessage->text().trimmed());
 
     ui->lnMessage->setText("");
-    ui->listMessages->addItem(ui->lnMessage->text().trimmed());
+    // ui->listMessages->addItem(ui->lnMessage->text().trimmed());
 }
 
 void ClientChatWidget::clientDisconnected(){
