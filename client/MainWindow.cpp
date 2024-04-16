@@ -40,7 +40,7 @@ void MainWindow::dataReceived(QString message){
     ui->listMessages->setItemWidget(listItemWidget,chatWidget);
 }
 
-void MainWindow::on_btnSend_clicked()
+void MainWindow::on_btnSend_pressed()
 {
     auto message = ui->lnMessage->text().trimmed();
     _client->sendMessage(message);

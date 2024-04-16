@@ -23,7 +23,7 @@ private slots:
     void on_actionConnect_triggered();
     void dataReceived(QString data);
 
-    void on_btnSend_clicked();
+    // void on_btnSend_clicked();
 
     void on_lnClientName_editingFinished();
 
@@ -31,7 +31,7 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
-    void on_lnMessage_textChanged(const QString &arg1);
+    // void on_lnMessage_textChanged(const QString &arg1);
 
     void onTyping();
 
