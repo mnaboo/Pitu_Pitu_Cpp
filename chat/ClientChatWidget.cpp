@@ -17,6 +17,11 @@ ClientChatWidget::ClientChatWidget(QTcpSocket *client, QWidget *parent)
 
 }
 
+void ClientChatWidget::disconnect()
+{
+    _client->disconnectFromHost();
+}
+
 ClientChatWidget::~ClientChatWidget()
 {
     delete ui;
@@ -36,12 +41,22 @@ void ClientChatWidget::clientDisconnected(){
     ui->wdgSend->setEnabled(false);
 }
 
-void ClientChatWidget::textMessageReceived(QString message)
+void ClientChatWidget::textMessageReceived(QString message, QString receiver)
 {
-    ui->listMessages->addItem(message);
+    if (receiver == "Server" || receiver == "All") {
+        ui->listMessages->addItem(message);
+    }
+    if(receiver != "Server"){
+        emit textForOtherClients(message, receiver, _client->name());
+    }
 }
 
 void ClientChatWidget::onTyping()
 {
     emit isTyping(QString("%1 is typing...").arg(_client->name()));
+}
+
+void ClientChatWidget::onClientNameChanged(QString prevName, QString name)
+{
+    emit clientNameChanged(prevName, name);
 }

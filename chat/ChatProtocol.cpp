@@ -6,10 +6,41 @@ ChatProtocol::ChatProtocol()
 
 }
 
-
-QByteArray ChatProtocol::textMessage(QString message)
+QByteArray ChatProtocol::setClientNameMessage(QString prevName, QString name)
 {
-    return getData(Text, message);
+    QByteArray ba;
+    QDataStream out(&ba, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+    out << ClientName << prevName << name;
+    return ba;
+}
+
+QByteArray ChatProtocol::setConnectionACKMessage(QString clientName, QStringList otherClients)
+{
+    QByteArray ba;
+    QDataStream out(&ba, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+    out << connectionACK << clientName << otherClients;
+    return ba;
+}
+
+QByteArray ChatProtocol::setNewClientMessage(QString clientName)
+{
+    return getData(NewClient, clientName);
+}
+
+QByteArray ChatProtocol::setClientDisconnectedMessage (QString clientName)
+{
+    return getData(ClientDisconnected, clientName);
+}
+
+QByteArray ChatProtocol::textMessage(QString message, QString receiver)
+{
+    QByteArray ba;
+    QDataStream out(&ba, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+    out << ClientName << receiver << message;
+    return ba;
 }
 
 QByteArray ChatProtocol::isTypingMessage()
@@ -39,7 +70,7 @@ void ChatProtocol::loadData(QByteArray data)
     in >> _type;
     switch (_type) {
     case Text:
-        in >> _message;
+        in >> _receiver >> _message;
         break;
     case SetName:
         in >> _name;
@@ -60,6 +91,11 @@ QByteArray ChatProtocol::getData(MessageType type, QString data)
     out << type << data;
 
     return ba;
+}
+
+QString ChatProtocol::receiver() const
+{
+    return _receiver;
 }
 
 ChatProtocol::MessageType ChatProtocol::type() const

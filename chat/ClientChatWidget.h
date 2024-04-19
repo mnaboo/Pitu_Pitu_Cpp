@@ -15,19 +15,21 @@ class ClientChatWidget : public QWidget
 
 public:
     explicit ClientChatWidget(QTcpSocket *client, QWidget *parent = nullptr);
+    void disconnect();
     ~ClientChatWidget();
 
 private slots:
     void on_btnSend_clicked();
     void clientDisconnected();
-    void textMessageReceived(QString message);
+    void textMessageReceived(QString message, QString receiver);
     void onTyping();
+    void onClientNameChanged(QString prevname, QString name);
 
 signals:
-    void clientNameChanged(QString name);
+    void clientNameChanged(QString prevName, QString name);
     void isTyping(QString message);
     void statusChanged(ChatProtocol::Status status);
-
+    void textForOtherClients(QString message, QString receiver, QString sender);
 private:
     Ui::ClientChatWidget *ui;
     ClientManager *_client;
