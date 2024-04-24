@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>792</width>
-    <height>773</height>
+    <width>783</width>
+    <height>760</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,10 +54,10 @@
     <widget class="QPushButton" name="btnSend">
      <property name="geometry">
       <rect>
-       <x>660</x>
-       <y>640</y>
-       <width>101</width>
-       <height>51</height>
+       <x>390</x>
+       <y>630</y>
+       <width>91</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="font">
@@ -99,7 +99,7 @@
        <x>230</x>
        <y>10</y>
        <width>227</width>
-       <height>26</height>
+       <height>23</height>
       </rect>
      </property>
      <property name="orientation">
@@ -132,7 +132,7 @@
        <x>524</x>
        <y>10</y>
        <width>201</width>
-       <height>26</height>
+       <height>23</height>
       </rect>
      </property>
      <property name="orientation">
@@ -180,11 +180,49 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>640</y>
-       <width>641</width>
+       <y>630</y>
+       <width>381</width>
        <height>61</height>
       </rect>
      </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>610</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Comic Sans MS</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Destination:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cmbDestination">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>640</y>
+       <width>91</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Server</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>All</string>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>
@@ -193,8 +231,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>792</width>
-     <height>26</height>
+     <width>783</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOption">

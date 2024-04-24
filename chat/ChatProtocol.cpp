@@ -1,4 +1,6 @@
 #include "ChatProtocol.h"
+
+#include <QFileInfo>
 #include <QIODevice>
 
 ChatProtocol::ChatProtocol()
@@ -6,40 +8,12 @@ ChatProtocol::ChatProtocol()
 
 }
 
-QByteArray ChatProtocol::setClientNameMessage(QString prevName, QString name)
-{
-    QByteArray ba;
-    QDataStream out(&ba, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
-    out << ClientName << prevName << name;
-    return ba;
-}
-
-QByteArray ChatProtocol::setConnectionACKMessage(QString clientName, QStringList otherClients)
-{
-    QByteArray ba;
-    QDataStream out(&ba, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_6_0);
-    out << connectionACK << clientName << otherClients;
-    return ba;
-}
-
-QByteArray ChatProtocol::setNewClientMessage(QString clientName)
-{
-    return getData(NewClient, clientName);
-}
-
-QByteArray ChatProtocol::setClientDisconnectedMessage (QString clientName)
-{
-    return getData(ClientDisconnected, clientName);
-}
-
 QByteArray ChatProtocol::textMessage(QString message, QString receiver)
 {
     QByteArray ba;
     QDataStream out(&ba, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
-    out << ClientName << receiver << message;
+    out << Text << receiver << message;
     return ba;
 }
 
@@ -59,8 +33,35 @@ QByteArray ChatProtocol::setStatusMessage(Status status)
     QDataStream out(&ba, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
     out << SetStatus << status;
-
     return ba;
+}
+
+QByteArray ChatProtocol::setClientNameMessage(QString prevName, QString name)
+{
+    QByteArray ba;
+    QDataStream out(&ba, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+    out << ClientName << prevName << name;
+    return ba;
+}
+
+QByteArray ChatProtocol::setConnectionACKMessage(QString clientName, QStringList otherClients)
+{
+    QByteArray ba;
+    QDataStream out(&ba, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_0);
+    out << ConnectionACK << clientName << otherClients;
+    return ba;
+}
+
+QByteArray ChatProtocol::setNewClientMessage(QString clientName)
+{
+    return getData(NewClient, clientName);
+}
+
+QByteArray ChatProtocol::setClinetDisconnectedMessage(QString clientName)
+{
+    return getData(ClientDisconnected, clientName);
 }
 
 void ChatProtocol::loadData(QByteArray data)
@@ -89,14 +90,14 @@ QByteArray ChatProtocol::getData(MessageType type, QString data)
     QDataStream out(&ba, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_6_0);
     out << type << data;
-
     return ba;
 }
 
-QString ChatProtocol::receiver() const
+const QString &ChatProtocol::receiver() const
 {
     return _receiver;
 }
+
 
 ChatProtocol::MessageType ChatProtocol::type() const
 {
@@ -108,12 +109,12 @@ ChatProtocol::Status ChatProtocol::status() const
     return _status;
 }
 
-QString ChatProtocol::name() const
+const QString &ChatProtocol::name() const
 {
     return _name;
 }
 
-QString ChatProtocol::message() const
+const QString &ChatProtocol::message() const
 {
     return _message;
 }

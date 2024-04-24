@@ -2,8 +2,10 @@
 #define CLIENTCHATWIDGET_H
 
 #include "ClientManager.h"
-#include <QWidget>
+
+#include <QDir>
 #include <QTcpSocket>
+#include <QWidget>
 
 namespace Ui {
 class ClientChatWidget;
@@ -14,17 +16,19 @@ class ClientChatWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ClientChatWidget(QTcpSocket *client, QWidget *parent = nullptr);
+    explicit ClientChatWidget(QTcpSocket *cleint, QWidget *parent = nullptr);
     void disconnect();
     ~ClientChatWidget();
-
 private slots:
-    void on_btnSend_clicked();
+
     void clientDisconnected();
+
+    void on_btnSend_clicked();
+
     void textMessageReceived(QString message, QString receiver);
     void onTyping();
-    void onClientNameChanged(QString prevname, QString name);
 
+    void onClientNameChanged(QString prevName, QString name);
 signals:
     void clientNameChanged(QString prevName, QString name);
     void isTyping(QString message);
@@ -33,6 +37,7 @@ signals:
 private:
     Ui::ClientChatWidget *ui;
     ClientManager *_client;
+    QDir dir;
 };
 
 #endif // CLIENTCHATWIDGET_H

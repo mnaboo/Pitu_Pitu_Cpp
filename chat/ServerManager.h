@@ -19,15 +19,15 @@ public slots:
 signals:
     void newClientConnected(QTcpSocket *client);
     void clientDisconnected(QTcpSocket *client);
-
 private slots:
     void newClientConnectionReceived();
     void onClientDisconnected();
 
-private:
+private: // fields
     QTcpServer *_server;
     QMap<QString, QTcpSocket *> _clients;
     ChatProtocol _protocol;
+private: //mehtods
     void setupServer(ushort port);
 };
 

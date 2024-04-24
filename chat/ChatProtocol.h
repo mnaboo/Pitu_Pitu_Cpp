@@ -4,6 +4,8 @@
 #include <QByteArray>
 #include <QString>
 
+
+
 class ChatProtocol
 {
 public:
@@ -13,10 +15,11 @@ public:
         SetName,
         SetStatus,
         ClientName,
-        connectionACK,
+        ConnectionACK,
         NewClient,
         ClientDisconnected
     };
+
     enum Status{
         None,
         Available,
@@ -34,19 +37,19 @@ public:
     QByteArray setClientNameMessage(QString prevName, QString name);
     QByteArray setConnectionACKMessage(QString clientName, QStringList otherClients);
     QByteArray setNewClientMessage(QString clientName);
-    QByteArray setClientDisconnectedMessage (QString clientName);
+    QByteArray setClinetDisconnectedMessage(QString clientName);
 
     void loadData(QByteArray data);
 
-    QString message() const;
+    const QString &message() const;
 
-    QString name() const;
+    const QString &name() const;
 
     Status status() const;
 
     MessageType type() const;
 
-    QString receiver() const;
+    const QString &receiver() const;
 
 private:
     QByteArray getData(MessageType type, QString data);
@@ -56,6 +59,7 @@ private:
     QString _name;
     Status _status;
     QString _receiver;
+
 };
 
 #endif // CHATPROTOCOL_H

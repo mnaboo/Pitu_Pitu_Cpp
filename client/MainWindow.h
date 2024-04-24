@@ -3,12 +3,9 @@
 
 #include <QMainWindow>
 #include "ClientManager.h"
-#include "ChatItemWidget.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -21,22 +18,27 @@ public:
 
 private slots:
     void on_actionConnect_triggered();
-    void dataReceived(QString data);
 
-    // void on_btnSend_clicked();
+    void on_btnSend_clicked();
+
+    void dataReceived(QString message);
 
     void on_lnClientName_editingFinished();
 
-    void on_btnSend_pressed();
-
-    void on_comboBox_currentIndexChanged(int index);
-
-    // void on_lnMessage_textChanged(const QString &arg1);
+    void on_cmbStatus_currentIndexChanged(int index);
 
     void onTyping();
+
+
+    void onConnectionACK(QString myName, QStringList clientsName);
+    void onNewClientConnectedToServer(QString clienName);
+    void onClientNameChanged(QString prevName, QString clientName);
+    void onClientDisconnected(QString clientName);
+
 
 private:
     Ui::MainWindow *ui;
     ClientManager *_client;
+    void setupClient();
 };
 #endif // MAINWINDOW_H

@@ -38,10 +38,11 @@ void ServerManager::onTextForOtherClients(QString message, QString receiver, QSt
     }
 }
 
-void ServerManager::newClientConnectionReceived(){
+void ServerManager::newClientConnectionReceived()
+{
     auto client = _server->nextPendingConnection();
 
-    auto id = _clients.count();
+    auto id = _clients.count() + 1;
     auto clientName = QString("Client (%1)").arg(id);
     client->setProperty("id", id);
     client->setProperty("clientName", clientName);
@@ -49,7 +50,7 @@ void ServerManager::newClientConnectionReceived(){
     connect(client, &QTcpSocket::disconnected, this, &ServerManager::onClientDisconnected);
     emit newClientConnected(client);
 
-    if(id > 1) {
+    if (id > 1) {
         auto message = _protocol.setConnectionACKMessage(clientName, _clients.keys());
         client->write(message);
 
@@ -61,13 +62,12 @@ void ServerManager::newClientConnectionReceived(){
     _clients[clientName] = client;
 }
 
-void ServerManager::onClientDisconnected(){
+void ServerManager::onClientDisconnected()
+{
     auto client = qobject_cast<QTcpSocket *>(sender());
-    // int id = client->property("id").toInt();
-
     auto clientName = client->property("clientName").toString();
     _clients.remove(clientName);
-    auto message = _protocol.setClientDisconnectedMessage(clientName);
+    auto message = _protocol.setClinetDisconnectedMessage(clientName);
     foreach (auto cl, _clients) {
         cl->write(message);
     }
@@ -75,7 +75,8 @@ void ServerManager::onClientDisconnected(){
     emit clientDisconnected(client);
 }
 
-void ServerManager::setupServer(ushort port){
+void ServerManager::setupServer(ushort port)
+{
     _server = new QTcpServer(this);
     connect(_server, &QTcpServer::newConnection, this, &ServerManager::newClientConnectionReceived);
     _server->listen(QHostAddress::Any, port);
