@@ -51,7 +51,7 @@ void MainWindow::on_btnSend_clicked()
     ui->lnMessage->setFocus();
 
     auto chatWidget = new ChatItemWidget();
-    chatWidget->setMessage(message, true);
+    chatWidget->setMessage("You: " + message, true);
     auto listWidgetItem = new QListWidgetItem();
     listWidgetItem->setSizeHint(QSize(0, 65));
     ui->listMessages->addItem(listWidgetItem);
@@ -66,7 +66,7 @@ void MainWindow::dataReceived(QString message)
     auto listWidgetItem = new QListWidgetItem();
     listWidgetItem->setSizeHint(QSize(0, 65));
     ui->listMessages->addItem(listWidgetItem);
-    listWidgetItem->setBackground(QColor(167, 255, 237));
+    listWidgetItem->setBackground(QColor(82, 82, 82));
     ui->listMessages->setItemWidget(listWidgetItem, chatWidget);
 
 
@@ -90,7 +90,7 @@ void MainWindow::on_cmbStatus_currentIndexChanged(int index)
 
 void MainWindow::onTyping()
 {
-    statusBar()->showMessage("Server is typing...", 750);
+    statusBar()->showMessage("Server is typing...", 1000);
 }
 
 void MainWindow::onConnectionACK(QString myName, QStringList clientsName)

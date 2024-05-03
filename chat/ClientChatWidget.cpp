@@ -40,15 +40,15 @@ void ClientChatWidget::clientDisconnected()
 void ClientChatWidget::on_btnSend_clicked()
 {
     auto message = ui->lnMessage->text().trimmed();
-    _client->sendMessage(message);
+    _client->sendMessage("Server: " + message);
     ui->lnMessage->setText("");
-    ui->listMessages->addItem(message);
+    ui->listMessages->addItem("You: " + message);
 }
 
 void ClientChatWidget::textMessageReceived(QString message, QString receiver)
 {
     if (receiver == "Server" || receiver == "All") {
-        ui->listMessages->addItem(message);
+        ui->listMessages->addItem(QString("%1: ").arg(_client->name()) + message);
     }
     if(receiver != "Server"){
         emit textForOtherClients(message, receiver, _client->name());

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>783</width>
-    <height>760</height>
+    <height>739</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>10</x>
       <y>20</y>
       <width>761</width>
-      <height>701</height>
+      <height>661</height>
      </rect>
     </property>
     <widget class="QGroupBox" name="groupBox">
@@ -29,7 +29,7 @@
        <x>1</x>
        <y>36</y>
        <width>761</width>
-       <height>581</height>
+       <height>561</height>
       </rect>
      </property>
      <property name="font">
@@ -46,7 +46,7 @@
         <x>12</x>
         <y>22</y>
         <width>741</width>
-        <height>551</height>
+        <height>531</height>
        </rect>
       </property>
      </widget>
@@ -55,9 +55,9 @@
      <property name="geometry">
       <rect>
        <x>390</x>
-       <y>630</y>
+       <y>620</y>
        <width>91</width>
-       <height>61</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -79,7 +79,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>610</y>
+       <y>600</y>
        <width>71</width>
        <height>20</height>
       </rect>
@@ -180,19 +180,19 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>630</y>
+       <y>620</y>
        <width>381</width>
-       <height>61</height>
+       <height>31</height>
       </rect>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>580</x>
-       <y>610</y>
-       <width>81</width>
-       <height>21</height>
+       <x>520</x>
+       <y>620</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -207,10 +207,10 @@
     <widget class="QComboBox" name="cmbDestination">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>640</y>
+       <x>620</x>
+       <y>620</y>
        <width>91</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <item>
@@ -232,7 +232,7 @@
      <x>0</x>
      <y>0</y>
      <width>783</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOption">

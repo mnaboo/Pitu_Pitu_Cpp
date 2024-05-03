@@ -70,6 +70,7 @@ void MainWindow::setClientStatus(ChatProtocol::Status status)
     ui->tbChats->setTabIcon(index, icon);
 }
 
+
 void MainWindow::seupServer()
 {
     _server = new ServerManager();

@@ -19,7 +19,7 @@ void ServerManager::notifyOtherClients(QString prevName, QString name)
 
 void ServerManager::onTextForOtherClients(QString message, QString receiver, QString sender)
 {
-    auto msg = _protocol.textMessage(message, receiver);
+    auto msg = _protocol.textMessage(sender + ": " + message, receiver);
     if (receiver == "All") {
         foreach (auto cl, _clients) {
             auto clientName = cl->property("clientName").toString();
