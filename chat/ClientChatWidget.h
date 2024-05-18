@@ -26,7 +26,7 @@ private slots:
     void on_btnSend_clicked();
 
     void textMessageReceived(QString message, QString receiver);
-    void onTyping();
+    void onTyping(QString receiver);
 
     void onClientNameChanged(QString prevName, QString name);
 signals:
@@ -34,6 +34,7 @@ signals:
     void isTyping(QString message);
     void statusChanged(ChatProtocol::Status status);
     void textForOtherClients(QString message, QString receiver, QString sender);
+    void isTypingToOtherClients(QString typing, QString receiver);
 private:
     Ui::ClientChatWidget *ui;
     ClientManager *_client;

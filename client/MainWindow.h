@@ -27,7 +27,7 @@ private slots:
 
     void on_cmbStatus_currentIndexChanged(int index);
 
-    void onTyping();
+    void onTyping(QString typing);
 
 
     void onConnectionACK(QString myName, QStringList clientsName);

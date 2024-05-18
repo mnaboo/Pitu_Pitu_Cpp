@@ -20,14 +20,14 @@ public:
     void sendName(QString name);
     void sendStatus(ChatProtocol::Status status);
     QString name() const;
-    void sendIsTyping();
+    void sendIsTyping(QString typing);
 
 signals:
     void connected();
     void disconnected();
 //    void dataReceived(QByteArray data);
     void textMessageReceived(const QString message, QString receiver);
-    void isTyping();
+    void isTyping(QString receiver);
     void nameChanged(QString prevName, QString name);
     void statusChanged(ChatProtocol::Status status);
 private slots:

@@ -31,7 +31,7 @@ public:
     ChatProtocol();
 
     QByteArray textMessage(QString message, QString receiver);
-    QByteArray isTypingMessage();
+    QByteArray isTypingMessage(QString receiver);
     QByteArray setNameMessage(QString name);
     QByteArray setStatusMessage(Status status);
 

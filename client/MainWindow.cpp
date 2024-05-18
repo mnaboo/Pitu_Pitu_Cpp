@@ -29,7 +29,9 @@ void MainWindow::setupClient()
     });
     connect(_client, &ClientManager::textMessageReceived, this, &MainWindow::dataReceived);
     connect(_client, &ClientManager::isTyping, this, &MainWindow::onTyping);
-    connect(ui->lnMessage, &QLineEdit::textChanged, _client, &ClientManager::sendIsTyping);
+    connect(ui->lnMessage, &QLineEdit::textChanged, this, [this]() {
+        _client->sendIsTyping(ui->cmbDestination->currentText());
+    });
     connect(_client, &ClientManager::connectionACK, this, &MainWindow::onConnectionACK);
     connect(_client, &ClientManager::newClientConnectedToServer, this, &MainWindow::onNewClientConnectedToServer);
     connect(_client, &ClientManager::clientDisconnected, this, &MainWindow::onClientDisconnected);
@@ -88,9 +90,9 @@ void MainWindow::on_cmbStatus_currentIndexChanged(int index)
     _client->sendStatus(status);
 }
 
-void MainWindow::onTyping()
+void MainWindow::onTyping(QString typing)
 {
-    statusBar()->showMessage("Server is typing...", 1000);
+    statusBar()->showMessage(typing + " is typing...", 1000);
 }
 
 void MainWindow::onConnectionACK(QString myName, QStringList clientsName)

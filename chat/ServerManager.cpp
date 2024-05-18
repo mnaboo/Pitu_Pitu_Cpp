@@ -38,6 +38,22 @@ void ServerManager::onTextForOtherClients(QString message, QString receiver, QSt
     }
 }
 
+void ServerManager::onTypingToOtherClients(QString typing, QString receiver){
+    if (receiver == "All") {
+        foreach (auto cl, _clients) {
+            cl->write(_protocol.isTypingMessage(typing));
+        }
+    } else {
+        foreach (auto cl, _clients) {
+            auto clientName = cl->property("clientName").toString();
+            if (clientName == receiver) {
+                cl->write(_protocol.isTypingMessage(typing));
+                return;
+            }
+        }
+    }
+}
+
 void ServerManager::newClientConnectionReceived()
 {
     auto client = _server->nextPendingConnection();

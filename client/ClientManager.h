@@ -17,14 +17,14 @@ public:
     void sendMessage(QString message, QString receiver);
     void sendName(QString name);
     void sendStatus(ChatProtocol::Status status);
-    void sendIsTyping();
+    void sendIsTyping(QString receiver);
 
 signals:
     void connected();
     void disconnected();
 //    void dataReceived(QByteArray data);
     void textMessageReceived(QString message);
-    void isTyping();
+    void isTyping(QString message);
     void nameChanged(QString name);
     void statusChanged(ChatProtocol::Status status);
 

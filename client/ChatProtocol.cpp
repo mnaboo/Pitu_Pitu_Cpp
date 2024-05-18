@@ -17,9 +17,9 @@ QByteArray ChatProtocol::textMessage(QString message, QString receiver)
     return ba;
 }
 
-QByteArray ChatProtocol::isTypingMessage()
+QByteArray ChatProtocol::isTypingMessage(QString receiver)
 {
-    return getData(IsTyping, "");
+    return getData(IsTyping, receiver);
 }
 
 QByteArray ChatProtocol::setNameMessage(QString name)
@@ -50,6 +50,9 @@ void ChatProtocol::loadData(QByteArray data)
         break;
     case SetStatus:
         in >> _status;
+        break;
+    case IsTyping:
+        in >> _receiver;
         break;
     case ClientName:
         in >> _prevName >> _clientName;

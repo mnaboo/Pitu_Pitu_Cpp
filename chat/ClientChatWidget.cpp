@@ -16,7 +16,9 @@ ClientChatWidget::ClientChatWidget(QTcpSocket *client, QWidget *parent) :
     connect(_client, &ClientManager::isTyping, this, &ClientChatWidget::onTyping);
     connect(_client, &ClientManager::nameChanged, this, &ClientChatWidget::onClientNameChanged);
     connect(_client, &ClientManager::statusChanged, this, &ClientChatWidget::statusChanged);
-    connect(ui->lnMessage, &QLineEdit::textChanged, _client, &ClientManager::sendIsTyping);
+    connect(ui->lnMessage, &QLineEdit::textChanged, this, [this]() {
+        _client->sendIsTyping("Server");
+    });
 
     dir.mkdir(_client->name());
     dir.setPath("./" + _client->name());
@@ -55,9 +57,12 @@ void ClientChatWidget::textMessageReceived(QString message, QString receiver)
     }
 }
 
-void ClientChatWidget::onTyping()
+void ClientChatWidget::onTyping(QString receiver)
 {
-    emit isTyping(QString("%1 is typing...").arg(_client->name()));
+    emit isTyping(QString("%1 is typing to %2").arg(_client->name(), receiver));
+    if(receiver != "Server"){
+        emit isTypingToOtherClients(_client->name(), receiver);
+    }
 }
 
 void ClientChatWidget::onClientNameChanged(QString prevName, QString name)

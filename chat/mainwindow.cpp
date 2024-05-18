@@ -24,10 +24,11 @@ void MainWindow::newClientConnected(QTcpSocket *client)
     connect(chatWidget, &ClientChatWidget::clientNameChanged, this, &MainWindow::setClientName);
     connect(chatWidget, &ClientChatWidget::statusChanged, this, &MainWindow::setClientStatus);
     connect(chatWidget, &ClientChatWidget::isTyping, [this](QString name){
-        this->statusBar()->showMessage(name, 750);
+        this->statusBar()->showMessage(name, 1000);
     });
 
-        connect(chatWidget, &ClientChatWidget::textForOtherClients, _server, &ServerManager::onTextForOtherClients);
+    connect(chatWidget, &ClientChatWidget::textForOtherClients, _server, &ServerManager::onTextForOtherClients);
+    connect(chatWidget, &ClientChatWidget::isTypingToOtherClients, _server, &ServerManager::onTypingToOtherClients);
 }
 
 void MainWindow::clientDisconnected(QTcpSocket *client)

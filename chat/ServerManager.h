@@ -16,6 +16,7 @@ public:
 
 public slots:
     void onTextForOtherClients(QString message, QString receiver, QString sender);
+    void onTypingToOtherClients(QString typing, QString receiver);
 signals:
     void newClientConnected(QTcpSocket *client);
     void clientDisconnected(QTcpSocket *client);

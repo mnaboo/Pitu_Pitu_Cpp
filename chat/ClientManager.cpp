@@ -51,9 +51,9 @@ QString ClientManager::name() const
     return name;
 }
 
-void ClientManager::sendIsTyping()
+void ClientManager::sendIsTyping(QString typing)
 {
-    _socket->write(_protocol.isTypingMessage());
+    _socket->write(_protocol.isTypingMessage(typing));
 }
 
 void ClientManager::readyRead()
@@ -74,7 +74,7 @@ void ClientManager::readyRead()
         emit statusChanged(_protocol.status());
         break;
     case ChatProtocol::IsTyping:
-        emit isTyping();
+        emit isTyping(_protocol.receiver());
         break;
     default:
         break;

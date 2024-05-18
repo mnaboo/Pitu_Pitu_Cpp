@@ -25,9 +25,9 @@ void ClientManager::sendStatus(ChatProtocol::Status status)
     _socket->write(_protocol.setStatusMessage(status));
 }
 
-void ClientManager::sendIsTyping()
+void ClientManager::sendIsTyping(QString receiver)
 {
-    _socket->write(_protocol.isTypingMessage());
+    _socket->write(_protocol.isTypingMessage(receiver));
 }
 
 
@@ -47,7 +47,7 @@ void ClientManager::readyRead()
         emit statusChanged(_protocol.status());
         break;
     case ChatProtocol::IsTyping:
-        emit isTyping();
+        emit isTyping(_protocol.receiver());
         break;
     case ChatProtocol::ConnectionACK:
         emit connectionACK(_protocol.myName(), _protocol.clientsName());
